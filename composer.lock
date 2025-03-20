@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e70a0c0f338bb5ad3adcb5964cbd944",
+    "content-hash": "902c86d324a61c66e0eed2a14e107986",
     "packages": [
         {
             "name": "doctrine/collections",
@@ -2147,6 +2147,57 @@
                 }
             ],
             "time": "2025-02-13T09:33:32+00:00"
+        },
+        {
+            "name": "tomazo/router",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tomazo16/router.git",
+                "reference": "f37c5dc42ff2d5d404dd610f4d3ac65b3fcd5155"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tomazo16/router/zipball/f37c5dc42ff2d5d404dd610f4d3ac65b3fcd5155",
+                "reference": "f37c5dc42ff2d5d404dd610f4d3ac65b3fcd5155",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^10.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tomazo\\Router\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tomazo\\TestRouter\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomasz Talar",
+                    "email": "tomasztalar90@gmail.com"
+                }
+            ],
+            "description": "A lightweight PHP router with middleware support for web applications.",
+            "keywords": [
+                "router"
+            ],
+            "support": {
+                "source": "https://github.com/Tomazo16/router/tree/main",
+                "issues": "https://github.com/Tomazo16/router/issues"
+            },
+            "time": "2025-03-20T18:41:55+00:00"
         }
     ],
     "packages-dev": [
@@ -3777,10 +3828,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "tomazo/router": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=8.1"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

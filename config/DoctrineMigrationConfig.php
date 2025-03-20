@@ -13,7 +13,7 @@ $dotenv->load('.env');
 require_once "vendor/autoload.php";
 
 // Ładujemy config migracji (ścieżki, tabela migracji itp.)
-$config = new PhpFile(__DIR__ . '/migrations-config.php');
+$config = new PhpFile(__DIR__ . '/packages/migrations.php');
 
 // POBIERASZ EntityManagera z Twojej klasy konfiguracji
 $entityManager = DoctrineConfig::getEntityManager();

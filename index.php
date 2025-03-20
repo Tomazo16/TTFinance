@@ -9,5 +9,3 @@ use Symfony\Component\Dotenv\Dotenv;
 //Dotenv initialize
 $dotenv = new Dotenv();
 $dotenv->load('.env');
-
-

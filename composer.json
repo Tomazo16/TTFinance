@@ -16,6 +16,8 @@
     },
     "require": {
         "doctrine/orm": "^3.3",
+        "doctrine/dbal": "^4",
+        "symfony/cache": "^6",
         "doctrine/migrations": "^3.8",
         "symfony/dotenv": "^6.4",
         "monolog/monolog": "^3.8"

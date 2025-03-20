@@ -7,7 +7,8 @@ use Doctrine\ORM\ORMSetup;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\ORM\Exception as ORMException;
-
+use App\Config\LoggerConfig;
+use Doctrine\DBAL\Tools\DsnParser;
 
 class DoctrineConfig
 {
@@ -17,7 +18,7 @@ class DoctrineConfig
     {
         if (self::$entityManager === null) {
 
-            $logger = LoggerConfig::getLogger();
+            $logger = LoggerConfig::getLogger('DoctrineConfig');
 
             try {
                 $databaseUrl = $_ENV['DATABASE_URL'] ?? null;
@@ -31,8 +32,11 @@ class DoctrineConfig
                     isDevMode: true
                 );
 
-                // Konfiguracja połączenia do bazy
-                $connectionParams = ['url' => $databaseUrl];
+                $dsnParser = new DsnParser();
+                $connectionParams = $dsnParser
+                    ->parse($databaseUrl);
+
+                // configuring the database connection
                 $connection = DriverManager::getConnection($connectionParams, $config);
 
                 // Tworzenie EntityManagera

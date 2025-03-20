@@ -7,13 +7,13 @@ use Monolog\Handler\StreamHandler;
 
 class LoggerConfig
 {
-    private static ?Logger $logger;
+    private static ?Logger $logger = null;
 
-    public static function getLogger(): Logger 
+    public static function getLogger(string $name): Logger 
     {
         if(self::$logger === null) {
 
-            self::$logger = new Logger('app_logger');
+            self::$logger = new Logger($name);
            $file =  ($_ENV['APP_ENV'] === 'dev') ? 'dev.log' : 'prog.log';
             self::$logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/' . $file));
         }

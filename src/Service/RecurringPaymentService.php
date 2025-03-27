@@ -57,6 +57,7 @@ class RecurringPaymentService
             $expense->setValue($this->recurringPayment->getValue());
             $expense->setDate(new DateTime());
             $expense->setAccount($this->recurringPayment->getAccount() ?? NULL);
+            $expense->setCategory($this->recurringPayment->getCategory() ?? NULL);
             $expense->setRecurringPayment($this->recurringPayment);
     
             return $expense;

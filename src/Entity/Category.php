@@ -28,9 +28,16 @@ class Category
     #[ORM\OneToMany(targetEntity: Expense::class, mappedBy: 'category')]
     private Collection $expenses;
 
+    /**
+     * @var Collection<int, RecurringPayment>
+     */
+    #[ORM\OneToMany(targetEntity: RecurringPayment::class, mappedBy: 'category')]
+    private Collection $recurringPayments;
+
     public function __construct()
     {
         $this->expenses = new ArrayCollection();
+        $this->recurringPayments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,6 +93,36 @@ class Category
             // set the owning side to null (unless already changed)
             if ($expense->getCategory() === $this) {
                 $expense->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RecurringPayment>
+     */
+    public function getRecurringPayments(): Collection
+    {
+        return $this->recurringPayments;
+    }
+
+    public function addRecurringPayment(RecurringPayment $recurringPayment): static
+    {
+        if (!$this->recurringPayments->contains($recurringPayment)) {
+            $this->recurringPayments->add($recurringPayment);
+            $recurringPayment->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecurringPayment(RecurringPayment $recurringPayment): static
+    {
+        if ($this->recurringPayments->removeElement($recurringPayment)) {
+            // set the owning side to null (unless already changed)
+            if ($recurringPayment->getCategory() === $this) {
+                $recurringPayment->setCategory(null);
             }
         }
 

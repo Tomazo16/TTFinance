@@ -16,8 +16,12 @@ $dotenv->load('.env');
 $logger = LoggerConfig::getLogger('index');
 
 try{
+    $path = $_SERVER['REQUEST_URI'];
+$scriptName = dirname($_SERVER['SCRIPT_NAME']);
+$route = '/' . trim(str_replace($scriptName, '', $path), '/');
+print_r($route);
     $router = RouterConfig::getRouter();
-   print_r($router->getRoutePaths());
+   print_r($router->getRoutes());
 } catch (Exception $e) {
     $logger->error($e->getMessage());
 }

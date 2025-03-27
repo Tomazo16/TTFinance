@@ -48,6 +48,12 @@ class Account
     #[ORM\OneToMany(targetEntity: Goal::class, mappedBy: 'from_account')]
     private Collection $goals;
 
+    /**
+     * @var Collection<int, RecurringPAyment>
+     */
+    #[ORM\OneToMany(targetEntity: RecurringPayment::class, mappedBy: 'account')]
+    private Collection $recurringPayments;
+
     public function __construct()
     {
         $this->incomes = new ArrayCollection();
@@ -55,6 +61,7 @@ class Account
         $this->transfers = new ArrayCollection();
         $this->transfers_in = new ArrayCollection();
         $this->goals = new ArrayCollection();
+        $this->recurringPayments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -218,6 +225,36 @@ class Account
             // set the owning side to null (unless already changed)
             if ($goal->getFromAccount() === $this) {
                 $goal->setFromAccount(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RecurringPayment>
+     */
+    public function getRecurringPayments(): Collection
+    {
+        return $this->recurringPayments;
+    }
+
+    public function addRecurringPayment(RecurringPayment $recurringPayment): static
+    {
+        if (!$this->recurringPayments->contains($recurringPayment)) {
+            $this->recurringPayments->add($recurringPayment);
+            $recurringPayment->setAccount($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecurringPayment(RecurringPayment $recurringPayment): static
+    {
+        if ($this->recurringPayments->removeElement($recurringPayment)) {
+            // set the owning side to null (unless already changed)
+            if ($recurringPayment->getAccount() === $this) {
+                $recurringPayment->setAccount(null);
             }
         }
 

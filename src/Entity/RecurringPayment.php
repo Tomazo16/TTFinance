@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecurringPaymentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,26 @@ class RecurringPayment
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $value = null;
+
+    /**
+     * @var Collection<int, Expense>
+     */
+    #[ORM\OneToMany(targetEntity: Expense::class, mappedBy: 'recurringPayment')]
+    private Collection $Expenses;
+
+    #[ORM\ManyToOne(inversedBy: 'recurringPayments')]
+    private ?Account $account = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $start_date = null;
+
+    #[ORM\ManyToOne(inversedBy: 'recurringPayments')]
+    private ?Category $category = null;
+
+    public function __construct()
+    {
+        $this->Expenses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +97,72 @@ class RecurringPayment
     public function setValue(string $value): static
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Expense>
+     */
+    public function getExpenses(): Collection
+    {
+        return $this->Expenses;
+    }
+
+    public function addExpense(Expense $expense): static
+    {
+        if (!$this->Expenses->contains($expense)) {
+            $this->Expenses->add($expense);
+            $expense->setRecurringPayment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExpense(Expense $expense): static
+    {
+        if ($this->Expenses->removeElement($expense)) {
+            // set the owning side to null (unless already changed)
+            if ($expense->getRecurringPayment() === $this) {
+                $expense->setRecurringPayment(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAccount(): ?Account
+    {
+        return $this->account;
+    }
+
+    public function setAccount(?Account $account): static
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    public function getStartDate(): ?\DateTimeInterface
+    {
+        return $this->start_date;
+    }
+
+    public function setStartDate(?\DateTimeInterface $start_date): static
+    {
+        $this->start_date = $start_date;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

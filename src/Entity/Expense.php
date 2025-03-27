@@ -29,6 +29,9 @@ class Expense
     #[ORM\ManyToOne(inversedBy: 'expenses')]
     private ?Account $account = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Expenses')]
+    private ?RecurringPayment $recurringPayment = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Expense
     public function setAccount(?Account $account): static
     {
         $this->account = $account;
+
+        return $this;
+    }
+
+    public function getRecurringPayment(): ?RecurringPayment
+    {
+        return $this->recurringPayment;
+    }
+
+    public function setRecurringPayment(?RecurringPayment $recurringPayment): static
+    {
+        $this->recurringPayment = $recurringPayment;
 
         return $this;
     }

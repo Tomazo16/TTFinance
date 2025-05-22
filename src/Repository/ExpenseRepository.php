@@ -3,18 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Expense;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends ServiceEntityRepository<Expenses>
- */
-class ExpenseRepository extends ServiceEntityRepository
+class ExpenseRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Expense::class);
-    }
 
     //    /**
     //     * @return Expenses[] Returns an array of Expenses objects

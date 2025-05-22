@@ -7,7 +7,7 @@ use App\Entity\Goal;
 /**
  * Service for managing goal-related operations.
  */
-class GoalService
+class GoalService implements ServiceInterface
 {
      /**
      * Constructor initializes the Goal entity.
@@ -19,6 +19,11 @@ class GoalService
     )
     {
         
+    }
+
+    public function getEntity(): Goal
+    {
+        return $this->goal;
     }
 
      /**

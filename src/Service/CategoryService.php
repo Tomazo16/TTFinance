@@ -8,7 +8,7 @@ use DateTime;
 /**
  * Service for managing category-related financial calculations.
  */
-class CategoryService
+class CategoryService implements ServiceInterface
 {
     /**
      * Constructor initializes the Category entity.
@@ -20,6 +20,11 @@ class CategoryService
     )
     {
         
+    }
+
+    public function getEntity(): Category
+    {
+        return $this->category;
     }
 
     /**

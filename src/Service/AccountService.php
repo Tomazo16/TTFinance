@@ -7,7 +7,7 @@ use App\Entity\Account;
 /**
  * Service for managing financial calculations related to an account.
  */
-class AccountService
+class AccountService implements ServiceInterface
 {
 
      /**
@@ -19,6 +19,11 @@ class AccountService
         private Account $account
     )
     {}
+
+    public function getEntity(): Account
+    {
+        return $this->account;
+    }
 
     /**
      * Calculates the total sum of expenses for the account.

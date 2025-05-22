@@ -3,18 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\RecurringPayment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends ServiceEntityRepository<RecurringPayment>
- */
-class RecurringPaymentRepository extends ServiceEntityRepository
+class RecurringPaymentRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, RecurringPayment::class);
-    }
 
     //    /**
     //     * @return RecurringPayment[] Returns an array of RecurringPayment objects

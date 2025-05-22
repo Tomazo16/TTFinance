@@ -3,18 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Account;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends ServiceEntityRepository<Account>
- */
-class AccountRepository extends ServiceEntityRepository
+class AccountRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Account::class);
-    }
+    
 
     //    /**
     //     * @return Account[] Returns an array of Account objects

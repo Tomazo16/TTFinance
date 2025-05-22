@@ -3,18 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Goal;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends ServiceEntityRepository<Goal>
- */
-class GoalRepository extends ServiceEntityRepository
+class GoalRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Goal::class);
-    }
 
     //    /**
     //     * @return Goal[] Returns an array of Goal objects

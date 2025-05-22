@@ -3,18 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Income;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends ServiceEntityRepository<Income>
- */
-class IncomeRepository extends ServiceEntityRepository
+class IncomeRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Income::class);
-    }
 
     //    /**
     //     * @return Income[] Returns an array of Income objects

@@ -3,18 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Transfer;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends ServiceEntityRepository<Transfer>
- */
-class TransferRepository extends ServiceEntityRepository
+
+class TransferRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Transfer::class);
-    }
 
     //    /**
     //     * @return Transfer[] Returns an array of Transfer objects

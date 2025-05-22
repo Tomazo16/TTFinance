@@ -19,7 +19,5 @@ class RouterConfig
             $logger->error($e->getMessage());
             die();
         }
-        //return new Router(new $routeLoader(...$config['routeLoader']['attr']), new $routeResolver(...$config['routeResolver']['attr']));
-
     }
 }

@@ -10,7 +10,7 @@ use InvalidArgumentException;
 /**
  * Service for managing recurring payments.
  */
-class RecurringPaymentService
+class RecurringPaymentService implements ServiceInterface
 {
      /**
      * The number of months corresponding to the recurring payment frequency.
@@ -37,6 +37,11 @@ class RecurringPaymentService
             "Yearly" => 12,
             default => throw new InvalidArgumentException("Invalid format of Billing value")
         };
+    }
+
+    public function getEntity(): RecurringPayment
+    {
+        return $this->recurringPayment;
     }
 
      /**

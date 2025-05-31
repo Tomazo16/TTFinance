@@ -26,11 +26,23 @@ class TemplateRender
      * @param array $data Data available in the template as variables
      * @return string Ready HTML
      */
-    public function render(string $template, array $data = []): string
+    public function render(string $template, array $data = [], array $css = [], array $js = []): string
     {
+        //setting default paths
         $templatePath = "{$this->basePath}/{$template}";
-        $css = $this->stylesPath ?? "";
-        $js = $this->jsPath ?? "";
+        $css = array_map(fn($style) => $this->stylesPath . '/' . $style , $css);
+        $js = array_map(fn($script) => $this->jsPath . '/' . $script , $js);
+
+        foreach ($css as $style) {
+            if(!file_exists($style)) {
+                throw new \RuntimeException("Style {$style} does not exist");
+            }
+        }
+        foreach($js as $script) {
+            if (!file_exists($script)) {
+                throw new \RuntimeException("Script {$script} does not exist");
+            }
+        }
 
         if(!file_exists($templatePath)) {
             throw new \RuntimeException("Template does not exist: {$templatePath}");

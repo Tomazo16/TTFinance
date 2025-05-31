@@ -32,9 +32,9 @@ abstract class AbstractController
 
     }
 
-    protected function render(string $template, array $data): string
+    protected function render(string $template, array $data = [], array $styles = [], array $scripts = []): string
     {
-       return $this->templateRender->render($template,$data);
+       return $this->templateRender->render($template,$data, $styles, $scripts);
     }
 
     protected function generateUrl(string $routeName, array $parameters): string

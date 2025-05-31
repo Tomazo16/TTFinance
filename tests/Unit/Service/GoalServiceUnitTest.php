@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Tests\Unit;
+namespace App\Tests\Unit\Service;
 
 use App\Entity\Goal;
 use App\Entity\Transfer;

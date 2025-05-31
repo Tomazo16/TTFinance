@@ -6,6 +6,8 @@ class FormRenderer
 {
     public static function render(FormBuilder $formBuilder, array $values = []): string
     {
+        $errors = $formBuilder->getErrors();
+
         $html = "<form action='{$formBuilder->getAction()}' method='{$formBuilder->getMethod()}'>";
 
         foreach ($formBuilder->getFields() as $name => $field) {
@@ -20,6 +22,12 @@ class FormRenderer
                 'radio' => self::renderRadio($name, $field, $value),
                 default => "<input type='{$field['type']}' name='{$name}' id='{$name}' value='{$value}'><br>",
             };
+
+            if(key_exists($name, $errors)) {
+                foreach ($errors[$name] as $error) {
+                    $html .= "<div class='error' style='color:red;'>{$error}</div>";
+                }
+            }
         }
 
         $html .= "<input type='submit' name='send' value='Save'>";

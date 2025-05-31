@@ -22,7 +22,7 @@ try{
     $path = $_SERVER['REQUEST_URI'];
     $scriptName = dirname($_SERVER['SCRIPT_NAME']);
     $route = '/' . trim(str_replace($scriptName, '', $path), '/');
-
+    
     $router->getActionMethod($route);
 } catch (Exception $e) {
     $logger->error($e->getMessage());

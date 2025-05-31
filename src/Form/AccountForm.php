@@ -2,7 +2,8 @@
 
 namespace App\Form;
 
-use App\Form\FormBuilder;
+use Tomazo\Form\FormBuilder;
+use Tomazo\Form\FormInterface;
 
 class AccountForm implements FormInterface
 {

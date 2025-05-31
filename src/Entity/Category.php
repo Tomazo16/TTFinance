@@ -34,6 +34,9 @@ class Category
     #[ORM\OneToMany(targetEntity: RecurringPayment::class, mappedBy: 'category')]
     private Collection $recurringPayments;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img_src = null;
+
     public function __construct()
     {
         $this->expenses = new ArrayCollection();
@@ -125,6 +128,18 @@ class Category
                 $recurringPayment->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImgSrc(): ?string
+    {
+        return $this->img_src;
+    }
+
+    public function setImgSrc(?string $img_src): static
+    {
+        $this->img_src = $img_src;
 
         return $this;
     }

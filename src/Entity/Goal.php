@@ -31,6 +31,9 @@ class Goal
     #[ORM\ManyToOne(inversedBy: 'goals')]
     private ?account $from_account = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img_src = null;
+
     public function __construct()
     {
         $this->transfers = new ArrayCollection();
@@ -103,6 +106,18 @@ class Goal
     public function setFromAccount(?account $from_account): static
     {
         $this->from_account = $from_account;
+
+        return $this;
+    }
+
+    public function getImgSrc(): ?string
+    {
+        return $this->img_src;
+    }
+
+    public function setImgSrc(?string $img_src): static
+    {
+        $this->img_src = $img_src;
 
         return $this;
     }

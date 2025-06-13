@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\AccountForm;
+use App\Form\CategoryForm;
+use App\Form\ExpenseForm;
+use Tomazo\Form\FormRenderer;
 use Tomazo\Router\Attribute\Route;
 
 class IndexController extends AbstractController
@@ -9,7 +13,8 @@ class IndexController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): void
     {
-
+        $form = new AccountForm();
+        echo FormRenderer::render($form->createForm(),[]);
         echo $this->render('dashboard.html.php', [
             'accounts' => $this->mapEntitiesToServices('Account','findAll'),
             'budgets' =>$this->mapEntitiesToServices('Category', 'findAll'),

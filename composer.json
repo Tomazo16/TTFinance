@@ -37,6 +37,6 @@
         "symfony/dotenv": "^6.4",
         "monolog/monolog": "^3.8",
         "tomazo/router": "^1.0",
-        "tomazo/form": "^1.0"
+        "tomazo/form": "^1.2"
     }
 }

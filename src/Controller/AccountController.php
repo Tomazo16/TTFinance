@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\AccountForm;
 use Tomazo\Router\Attribute\Route;
 
 class AccountController extends AbstractController
@@ -11,6 +12,12 @@ class AccountController extends AbstractController
     public function index(): void
     {
 
+    }
+    #[Route('/acc/form', name: 'accounts_form')]
+    public function form(): void
+    {
+        $form = new AccountForm();
+        
     }
 
     #[Route('/acc/add', name: 'account_add', methods: ['POST'])]

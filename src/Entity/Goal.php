@@ -121,4 +121,9 @@ class Goal
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }
